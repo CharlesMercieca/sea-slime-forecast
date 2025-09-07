@@ -10,6 +10,8 @@ A basic 24 hour OceanDrift using OpenDrift is calculated from points spawned on 
 
 `generate_map.py` then generates the static map, which is hosted in a basic `index.html` file.
 
+Or, more graphically:
+
 ![alt text](image.png)
 
 The whole thing is orchestrated thorough a GitHub action that runs twice daily, making for a lightweight deployment. 
