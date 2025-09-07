@@ -1,0 +1,16 @@
+name: slime
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy
+  - pandas
+  - xarray
+  - netcdf4
+  - scipy
+  - matplotlib
+  - folium
+  - opendrift
+  - pip
+  - pip:
+      - copernicusmarine
