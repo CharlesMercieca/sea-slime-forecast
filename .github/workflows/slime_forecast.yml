@@ -14,7 +14,6 @@ jobs:
       CMEMS_USER: ${{ secrets.CMEMS_USER }}
       CMEMS_PASS: ${{ secrets.CMEMS_PASS }}
 
-      COPERNICUSMARINE_CACHE_DIRECTORY: ${{ runner.temp }}/cmems_cache
 
       PIP_DISABLE_PIP_VERSION_CHECK: 1
       PYTHONUNBUFFERED: 1
