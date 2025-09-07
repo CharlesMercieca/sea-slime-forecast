@@ -31,7 +31,7 @@ jobs:
           environment-file: environment.yml
           cache-environment: true
           cache-downloads: true
-          micromamba-version: "1.5.8"   # any recent version is fine
+          micromamba-version: latest
           init-shell: bash
 
       - name: Show versions
