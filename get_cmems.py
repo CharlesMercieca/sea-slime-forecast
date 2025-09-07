@@ -1,15 +1,13 @@
 import os
 from pathlib import Path
-from dotenv import load_dotenv
 from copernicusmarine import subset
 from datetime import datetime, timedelta, timezone
 
 start = datetime.now(timezone.utc)
 end = start + timedelta(hours=48)
 
-load_dotenv(dotenv_path=Path(__file__).resolve().parent / ".env")
-CMEMS_USER = os.getenv("CMEMS_USER")
-CMEMS_PASS = os.getenv("CMEMS_PASS")
+CMEMS_USER = os.environ["CMEMS_USER"]
+CMEMS_PASS = os.environ["CMEMS_PASS"]
 
 subset(
     dataset_id="cmems_mod_med_phy-cur_anfc_4.2km_PT15M-i",
