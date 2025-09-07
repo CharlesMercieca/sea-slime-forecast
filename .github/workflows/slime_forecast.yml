@@ -27,27 +27,26 @@ jobs:
         with:
           python-version: "3.11"
           cache: "pip"
+          cache-dependency-path: "requirements.txt"
 
-      - name: Install dependencies (pip)
+      - name: Put CMEMS cache in runner temp.
+        run: echo "COPERNICUSMARINE_CACHE_DIRECTORY=$RUNNER_TEMP/cmems_cache" >> $GITHUB_ENV
+
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip wheel
-          pip install \
-            copernicusmarine \
-            opendrift \
-            numpy pandas xarray netCDF4 scipy \
-            matplotlib folium
+          pip install -r requirements.txt
 
-      - name: Show versions (debug)
+      - name: Versions (debug)
         run: |
           python - << 'PY'
-          import sys, pkgutil
-          print("Python:", sys.version)
+          import importlib
           for p in ["copernicusmarine","opendrift","numpy","pandas","xarray","netCDF4","scipy","matplotlib","folium"]:
-              m = pkgutil.find_loader(p)
               try:
-                  mod = __import__(p); v = getattr(mod, "__version__", "unknown")
-              except Exception: v="n/a"
-              print(f"{p}: {v}")
+                  m=importlib.import_module(p)
+                  print(f"{p}: {getattr(m,'__version__','unknown')}")
+              except Exception as e:
+                  print(p, "not importable:", e)
           PY
 
       - name: Run 1) get_cmems.py
@@ -59,7 +58,6 @@ jobs:
       - name: Run 3) generate_map.py
         run: python generate_map.py
 
-      # Optional: upload outputs as build artifacts (adjust paths)
       - name: Upload artifacts
         if: success()
         uses: actions/upload-artifact@v4
