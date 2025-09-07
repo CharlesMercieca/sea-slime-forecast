@@ -22,25 +22,24 @@ jobs:
       - name: Check out repo
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-          cache: "pip"
-          cache-dependency-path: "requirements.txt"
-
-      - name: Put CMEMS cache in runner temp.
+      - name: Set CMEMS cache dir
         run: echo "COPERNICUSMARINE_CACHE_DIRECTORY=$RUNNER_TEMP/cmems_cache" >> $GITHUB_ENV
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip wheel
-          pip install -r requirements.txt
+      - name: Set up micromamba (conda-forge env)
+        uses: mamba-org/setup-micromamba@v1
+        with:
+          environment-file: environment.yml
+          cache-environment: true
+          cache-downloads: true
+          micromamba-version: "1.5.8"   # any recent version is fine
+          init-shell: bash
 
-      - name: Versions (debug)
+      - name: Show versions
+        shell: bash -l {0}
         run: |
-          python - << 'PY'
-          import importlib
+          python - <<'PY'
+          import importlib, sys
+          print("Python:", sys.version)
           for p in ["copernicusmarine","opendrift","numpy","pandas","xarray","netCDF4","scipy","matplotlib","folium"]:
               try:
                   m=importlib.import_module(p)
@@ -50,12 +49,15 @@ jobs:
           PY
 
       - name: Run 1) get_cmems.py
+        shell: bash -l {0}
         run: python get_cmems.py
 
       - name: Run 2) simulate_drift.py
+        shell: bash -l {0}
         run: python simulate_drift.py
 
       - name: Run 3) generate_map.py
+        shell: bash -l {0}
         run: python generate_map.py
 
       - name: Upload artifacts
