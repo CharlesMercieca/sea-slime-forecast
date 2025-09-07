@@ -47,7 +47,7 @@ def add_geojson_polys(ax, feature, face=PAPER, edge=INK, lw=1.2, hatch="///", al
         for rings in coords:
             add_poly(rings)
 
-# --- Compute bbox ---
+# compute bbox
 xs, ys = [], []
 for feat in mt["features"]:
     geom = feat["geometry"]

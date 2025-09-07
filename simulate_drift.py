@@ -49,4 +49,4 @@ dist_m, idx = tree.query(np.column_stack([px, py]), k=1)
 df["nearest_beach"] = beaches.loc[idx, "location_name"].values
 df["distance_m"] = dist_m
 
-df.to_csv('data/results.csv', index=False)
+df.query('distance_m<1000').to_csv('data/results.csv', index=False)
