@@ -19,5 +19,6 @@ subset(
     end_datetime=end,
     username=CMEMS_USER,
     password=CMEMS_PASS,
-    output_filename="data/currents_malta.nc"
+    output_filename="data/currents_malta.nc",
+    overwrite=True
 )
