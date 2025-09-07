@@ -1,0 +1,9 @@
+copernicusmarine
+opendrift
+numpy
+pandas
+xarray
+netCDF4
+scipy
+matplotlib
+folium
