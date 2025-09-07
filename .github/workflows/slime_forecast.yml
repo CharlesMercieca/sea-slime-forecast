@@ -3,7 +3,10 @@ name: CMEMS → OpenDrift → Map
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 6 * * *"  # every day at 06:00 UTC (08:00 in Malta, adjust as you like)
+    - cron: "0 6 * * *"  # every day at 06:00 UTC (08:00 in Malta)
+
+permissions:
+  contents: write
 
 jobs:
   run-pipeline:
