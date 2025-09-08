@@ -30,7 +30,7 @@ bx, by = t.transform(beaches["lon"].to_numpy(), beaches["lat"].to_numpy())
 
 #location setup
 lat1, lon1 = 36.0075, 14.4305
-lat2, lon2 = 35.8621 14.6608
+lat2, lon2 = 35.8621, 14.6608
 
 o = OceanDrift(loglevel=20)
 o.add_reader([reader_cmems, reader_landmask])
