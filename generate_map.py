@@ -4,6 +4,15 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Polygon, Rectangle
 from matplotlib.lines import Line2D
 import matplotlib.ticker as mtick
+import matplotlib as mpl
+
+mpl.rcParams['font.family'] = 'sans-serif'
+mpl.rcParams['font.sans-serif'] = [
+    'DejaVu Sans',
+    'Noto Color Emoji',
+    'Segoe UI Emoji',
+    'Apple Color Emoji'
+]
 
 import json
 
@@ -82,7 +91,7 @@ if df is not None:
         ax.scatter(df["lon"], df["lat"], s=14, facecolor=ACCENT,
                     edgecolor=INK, linewidth=0.6, zorder=3)
 else:
-    ax.set_title("All Clear!! 🏊🐳🏄", fontname="Segoe UI Emoji")
+    ax.set_title("All Clear!! 🏊🐳🏄")
 
 #Generate bar chart
 if df is not None and "nearest_beach" in df.columns:
