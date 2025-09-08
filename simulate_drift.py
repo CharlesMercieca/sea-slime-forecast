@@ -29,12 +29,14 @@ t = Transformer.from_crs(crs_geo, crs_m, always_xy=True)
 bx, by = t.transform(beaches["lon"].to_numpy(), beaches["lat"].to_numpy())
 
 #location setup
-lat, lon = 36.0075, 14.4305
+lat1, lon1 = 36.0075, 14.4305
+lat2, lon2 = 35.8621 14.6608
 
 o = OceanDrift(loglevel=20)
 o.add_reader([reader_cmems, reader_landmask])
 
-o.seed_elements(lon, lat, radius=350, number=1000, time=start_time)
+o.seed_elements(lon1, lat1, radius=350, number=1000, time=start_time)
+o.seed_elements(lon2, lat2, radius=350, number=1000, time=start_time)
 ds=o.run(steps=288, time_step=300, time_step_output=900) # 86400 // 300   # = 288
 
 #save beachings
@@ -49,4 +51,4 @@ dist_m, idx = tree.query(np.column_stack([px, py]), k=1)
 df["nearest_beach"] = beaches.loc[idx, "location_name"].values
 df["distance_m"] = dist_m
 
-df.query('distance_m<1000').to_csv('data/results.csv', index=False)
+df.query('distance_m<1500').to_csv('data/results.csv', index=False)
