@@ -91,11 +91,11 @@ if df is not None:
         ax.scatter(df["lon"], df["lat"], s=14, facecolor=ACCENT,
                     edgecolor=INK, linewidth=0.6, zorder=3)
 else:
-    ax.set_title("All Clear!! 🏊🐳🏄")
+    ax.set_title("All Clear!!")
 
 #Generate bar chart
 if df is not None and "nearest_beach" in df.columns:
-    counts = df.groupby("nearest_beach").size().sort_values(ascending=False)/1000
+    counts = df.groupby("nearest_beach").size().sort_values(ascending=False)/2000
 
     inset_ax = fig.add_axes([0.5, 0.7, 0.479, 0.27], facecolor=PAPER)
 
