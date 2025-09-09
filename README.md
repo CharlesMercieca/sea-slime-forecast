@@ -1,5 +1,7 @@
 How https://charlesmercieca.github.io/sea-slime-forecast/ is made below!
 
+[Blog post explainer here.](https://www.charlesmercieca.com/post/2025-09-09-tracking-the-slime/)
+
 ## Intro
 
 Sometimes, when the conditions are just right, [Malta gets slime from fish farm feed](https://www.maltatoday.com.mt/news/national/136520/aquaculture_industry_pledges_cleaner_seas_after_opposition_raises_slime_concerns). I played enough with OpenDrift on another project to know it can make a lightweight forecast.
